@@ -10,7 +10,7 @@
   <Category/>
   <WebUI>http://[IP]:[PORT:9091]/index.php</WebUI>
   <TemplateURL/>
-  <Icon>https://d7umqicpi7263.cloudfront.net/img/product/d1ea7f7d-0525-47b3-857b-82dd595b24c8/6ad1d86d-c259-4165-b63b-1c7d50ff7be0.gif</Icon>
+  <Icon>https://raw.githubusercontent.com/ryanrdetzel/unraid-docker-templates/master/icons/zoneminder.gif</Icon>
   <ExtraParams/>
   <DateInstalled>1490732351</DateInstalled>
   <Description>
@@ -72,16 +72,10 @@
   </Data>
   <Environment/>
   <Config Name="zm.conf" Target="/etc/zm.conf" Default="" Mode="ro" Description="zm.conf" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/zoneminder/zm.conf</Config>
-
   <Config Name="/etc/localtime" Target="/etc/localtime" Default="" Mode="ro" Description="Container Path: /etc/localtime" Type="Path" Display="always" Required="true" Mask="false">/etc/localtime</Config>
-
   <Config Name="9091" Target="80" Default="" Mode="tcp" Description="Container Port: 80" Type="Port" Display="always" Required="true" Mask="false">9091</Config>
-
   <Config Name="40200-40499" Target="40200-40499" Default="" Mode="udp" Description="Container Port: 41200-41499" Type="Port" Display="always" Required="false" Mask="true">41200-41499</Config>
-
   <Config Name="554" Target="554" Default="" Mode="udp" Description="Container Port: 554" Type="Port" Display="always" Required="false" Mask="false">554</Config>
-
   <Config Name="/var/lib/zoneminder/events" Target="/var/lib/zoneminder/events" Default="" Mode="rw" Description="Container Path: /var/lib/zoneminder/events" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/Recordings/</Config>
-
   <Config Name="/var/lib/zoneminder/images" Target="/var/lib/zoneminder/images" Default="" Mode="rw" Description="Container Path: /var/lib/zoneminder/images" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/Recordings/</Config>
 </Container>
