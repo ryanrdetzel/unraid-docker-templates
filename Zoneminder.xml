@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Zoneminder</Name>
+  <Repository>kylejohnson/zoneminder</Repository>
+  <Registry/>
+  <Network>bridge</Network>
+  <Privileged>true</Privileged>
+  <Support/>
+  <Overview/>
+  <Category/>
+  <WebUI>http://[IP]:[PORT:9091]/index.php</WebUI>
+  <TemplateURL/>
+  <Icon>https://d7umqicpi7263.cloudfront.net/img/product/d1ea7f7d-0525-47b3-857b-82dd595b24c8/6ad1d86d-c259-4165-b63b-1c7d50ff7be0.gif</Icon>
+  <ExtraParams/>
+  <DateInstalled>1490732351</DateInstalled>
+  <Description>
+    Official Zoneminder Repo.
+    [br]
+    [b]Container Volumes:[/b][br]
+    [b]/etc/zm.conf[/b] Custom zm.conf file[br]
+    [b]/etc/localtime[/b] Keep time in sync[br]
+    [b]/var/lib/zoneminder/events[/b] Where events are stored[br]
+    [b]/var/lib/zoneminder/images[/b] Where images are stored[br]
+    [br]
+    [b]Container Ports:[/b][br]
+    [b]80[/b] Web admin interface[br]
+    [b]554[/b] UDP port for streaming port[br]
+    [b]40200-40499[/b] rtsp UDP port range[br]
+    These allow certain up cameras using rtsp to communicate back with zoneminder
+  </Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>9091</HostPort>
+        <ContainerPort>80</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+      <Port>
+        <HostPort>41200-41499</HostPort>
+        <ContainerPort>41200-41499</ContainerPort>
+        <Protocol>udp</Protocol>
+      </Port>
+      <Port>
+        <HostPort>554</HostPort>
+        <ContainerPort>554</ContainerPort>
+        <Protocol>udp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/zoneminder/zm.conf</HostDir>
+      <ContainerDir>/etc/zm.conf</ContainerDir>
+      <Mode>ro</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/etc/localtime</HostDir>
+      <ContainerDir>/etc/localtime</ContainerDir>
+      <Mode>ro</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/Recordings/</HostDir>
+      <ContainerDir>/var/lib/zoneminder/events</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/Recordings/</HostDir>
+      <ContainerDir>/var/lib/zoneminder/images</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment/>
+  <Config Name="zm.conf" Target="/etc/zm.conf" Default="" Mode="ro" Description="zm.conf" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/zoneminder/zm.conf</Config>
+
+  <Config Name="/etc/localtime" Target="/etc/localtime" Default="" Mode="ro" Description="Container Path: /etc/localtime" Type="Path" Display="always" Required="true" Mask="false">/etc/localtime</Config>
+
+  <Config Name="9091" Target="80" Default="" Mode="tcp" Description="Container Port: 80" Type="Port" Display="always" Required="true" Mask="false">9091</Config>
+
+  <Config Name="40200-40499" Target="40200-40499" Default="" Mode="udp" Description="Container Port: 41200-41499" Type="Port" Display="always" Required="false" Mask="true">41200-41499</Config>
+
+  <Config Name="554" Target="554" Default="" Mode="udp" Description="Container Port: 554" Type="Port" Display="always" Required="false" Mask="false">554</Config>
+
+  <Config Name="/var/lib/zoneminder/events" Target="/var/lib/zoneminder/events" Default="" Mode="rw" Description="Container Path: /var/lib/zoneminder/events" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/Recordings/</Config>
+
+  <Config Name="/var/lib/zoneminder/images" Target="/var/lib/zoneminder/images" Default="" Mode="rw" Description="Container Path: /var/lib/zoneminder/images" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/Recordings/</Config>
+</Container>
